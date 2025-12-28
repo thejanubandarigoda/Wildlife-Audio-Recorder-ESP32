@@ -123,7 +123,7 @@ void loop() {
   
   // Recording Loop
   while (millis() - startTime < (RECORD_TIME * 1000)) {
-    // Read from Microphone
+    // Read from Microphone 
     i2s_read(I2S_PORT, (void*)i2s_read_buff, I2S_BUFFER_SIZE, &bytesRead, portMAX_DELAY);
     
     // Write to SD Card
@@ -141,3 +141,4 @@ void loop() {
   Serial.println("Recording Finished.");
   delay(1000); // Wait 1 second before next recording
 }
+
