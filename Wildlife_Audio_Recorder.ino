@@ -25,7 +25,7 @@ void i2s_install() {
     .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),
     .sample_rate = SAMPLE_RATE,
     .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
-    .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT, // INMP441 L/R grounded
+    .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT,    // INMP441 L/R grounded
     .communication_format = i2s_comm_format_t(I2S_COMM_FORMAT_I2S | I2S_COMM_FORMAT_I2S_MSB),
     .intr_alloc_flags = 0,
     .dma_buf_count = 8,
@@ -45,9 +45,9 @@ void i2s_setpin() {
   i2s_set_pin(I2S_PORT, &pin_config);
 }
 
-// Function to write WAV header
+  // Function to write WAV header
 void wavHeader(File file, int sampleRate, int dataSize) {
-  int byteRate = sampleRate * 2; // 16 bit = 2 bytes
+  int byteRate = sampleRate * 2;    // 16 bit = 2 bytes
   byte header[headerSize];
 
   header[0] = 'R'; header[1] = 'I'; header[2] = 'F'; header[3] = 'F';
@@ -69,8 +69,8 @@ void wavHeader(File file, int sampleRate, int dataSize) {
   header[29] = (byte)((byteRate >> 8) & 0xFF);
   header[30] = (byte)((byteRate >> 16) & 0xFF);
   header[31] = (byte)((byteRate >> 24) & 0xFF);
-  header[32] = 2; header[33] = 0; // Block align
-  header[34] = 16; header[35] = 0; // Bits per sample
+  header[32] = 2; header[33] = 0;  // Block align
+  header[34] = 16; header[35] = 0;  // Bits per sample
   header[36] = 'd'; header[37] = 'a'; header[38] = 't'; header[39] = 'a';
   header[40] = (byte)(dataSize & 0xFF);
   header[41] = (byte)((dataSize >> 8) & 0xFF);
@@ -141,4 +141,5 @@ void loop() {
   Serial.println("Recording Finished.");
   delay(1000); // Wait 1 second before next recording
 }
+
 
